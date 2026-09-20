@@ -9,11 +9,11 @@ const stats = [
 ];
 
 const highlights = [
-  'Built real-time Cyber Threat Intelligence (CTI) modules with STIX graph visualizations',
-  'Designed & optimized 15+ GraphQL queries, role permissions & Hasura relationships',
-  'Created standardized component library of 20+ reusable React & Material UI controls',
-  'Engineered full-stack apps (GymBuddy) with React, Node.js, Express & PostgreSQL',
-  'Solved 300+ Data Structures & Algorithms problems across LeetCode and CodeChef',
+  'Built and maintained a React-based Cyber Threat Intelligence (CTI) platform on top of OpenCTI for STIX 2.1 investigation and enrichment',
+  'Developed interactive STIX graph explorers with D3.js, multi-hop tracing, and dynamic node expansion for threat analysis workflows',
+  'Implemented backend search and traversal services using FastAPI for IOC resolution, graph aggregation, deduplication, and related-entity discovery',
+  'Created reusable React + Material UI dashboards, filters, and server-side pagination for large IOC and report datasets',
+  'Integrated external intelligence feeds including VirusTotal, Shodan, ZoomEye, MITRE ATT&CK, AlienVault, and URLhaus',
 ];
 
 const AboutUs = () => {

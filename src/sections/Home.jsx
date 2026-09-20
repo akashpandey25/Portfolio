@@ -184,13 +184,13 @@ const Home = () => {
               <HeroTechVisual />
 
               {/* Floating Badge overlay */}
-              <div className="absolute bottom-4 left-4 right-4 p-3 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-slate-800 flex items-center justify-between text-xs">
+              {/* <div className="absolute bottom-4 left-4 right-4 p-3 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-slate-800 flex items-center justify-between text-xs">
                 <span className="text-slate-300 flex items-center gap-1.5 font-medium">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
                   Interactive 3D Profile Card
                 </span>
                 <span className="text-cyan-400 font-mono">Akash Pandey</span>
-              </div>
+              </div> */}
             </div>
           </motion.div>
 
