@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Terminal, Download, Mail, MapPin, Phone, Code2 } from 'lucide-react';
+import { ArrowRight, Sparkles, Terminal, Download, Mail, MapPin, Phone } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 import { SiLeetcode, SiCodechef, SiGeeksforgeeks } from 'react-icons/si';
 import HeroTechVisual from '../components/HeroTechVisual';
@@ -37,10 +37,10 @@ const Home = () => {
                 Hi, I'm <span className="text-gradient-cyan">Akash Pandey</span>
               </h1>
               <p className="text-xl sm:text-2xl text-slate-200 font-semibold">
-                Frontend-focused Software Engineer
+                Frontend-Centric Software Engineer
               </p>
               <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed">
-                Full Stack Developer with experience in React, Node.js, GraphQL, Java, SQL and JavaScript. Skilled in building responsive web applications, interactive data visualizations, and scalable features across frontend and backend systems. Focused on writing clean, efficient, and maintainable code.
+                Frontend-centric software engineer with almost 2 years of experience working on React and JavaScript technologies. Experienced in developing reusable component libraries, interactive data visualizations, and integrating REST and GraphQL APIs within Agile frameworks.
               </p>
             </motion.div>
 

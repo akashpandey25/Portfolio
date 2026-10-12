@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { User, GraduationCap, Award, Code, CheckCircle, Sparkles, BrainCircuit } from 'lucide-react';
+import { User, GraduationCap, CheckCircle, Sparkles, BrainCircuit } from 'lucide-react';
 
 const stats = [
   { label: 'Years Experience', value: '~2 Yrs' },
@@ -68,10 +68,10 @@ const AboutUs = () => {
                 Engineering Reusable UI & Complex Data Flows <Sparkles className="w-5 h-5 text-cyan-400" />
               </h3>
               <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                I am a Frontend-focused Software Engineer with nearly 2 years of professional experience building modern React, GraphQL, and Node.js applications. At <span className="text-cyan-400 font-semibold">Genetic Web Technologies</span>, I develop core modules for a Cyber Threat Intelligence (CTI) platform, implementing real-time D3.js interactive graph visualizations for thousands of STIX threat objects.
+                I am a frontend-centric software engineer with almost 2 years of experience working on React and JavaScript technologies. At <span className="text-cyan-400 font-semibold">Genetic Web Technologies Pvt. Ltd.</span>, I develop core modules for a Cyber Threat Intelligence (CTI) platform built upon OpenCTI, providing analysts with search, investigation, visualization, and enrichment capabilities for STIX 2.1 threat intelligence data.
               </p>
               <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                I thrive in Agile cross-functional environments, designing efficient relational database schemas, optimizing GraphQL queries with Hasura, and utilizing AI-assisted workflows (Claude, Antigravity) to accelerate feature delivery.
+                Experienced in developing reusable component libraries, interactive data visualizations with D3.js, and integrating REST and GraphQL APIs. Proficient in working within Agile frameworks with rapid iteration cycles to build responsive and user-centric features.
               </p>
             </div>
 
@@ -136,11 +136,11 @@ const AboutUs = () => {
                   <BrainCircuit className="w-4 h-4" /> Strong Problem Solving
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
-                  350+ Problems
+                  300+ Problems
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-slate-300">
-                Solid foundation in Data Structures, Algorithms, Object-Oriented Programming (OOP), and DBMS. Consistently solving algorithmic challenges on LeetCode, GFG and CodeChef.
+                Solid foundation in Data Structures, Algorithms, Object-Oriented Programming (OOP), and DBMS. Solved over 300 problems across LeetCode and GFG.
               </p>
             </motion.div>
           </div>

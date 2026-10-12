@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FolderGit2, ExternalLink, Eye, Sparkles } from 'lucide-react';
+import { FolderGit2, ExternalLink, Eye } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa6';
 import ProjectModal from '../components/ProjectModal';
 
@@ -9,17 +9,17 @@ const projectCategories = ['All', 'Full-Stack', 'Frontend & Data Vis', 'UI Syste
 const projectsData = [
   {
     id: 1,
-    title: 'GymBuddy — Workout Planning & Tracking App',
+    title: 'Gym Buddy — Workout Planning & Tracking App',
     category: 'Full-Stack',
-    description: 'Full-stack fitness application for personalized workout plans, exercise logs, and progress history built with React, Node.js, Express, and PostgreSQL.',
-    longDescription: 'GymBuddy is an end-to-end fitness application designed for personalized workout routine creation, exercise logging, and progress history tracking. Features a robust relational database schema built with PostgreSQL, RESTful APIs built with Node.js/Express, and a responsive React frontend.',
+    description: 'Full-stack fitness web application built with React (Vite) and Node.js REST API with PostgreSQL database (Supabase), featuring dynamic workout engines and exercise conflict scoring.',
+    longDescription: 'Gym Buddy is a full-stack fitness web application engineered with React (Vite) and a Node.js REST API backed by a PostgreSQL database (Supabase). It incorporates a custom workout engine covering over 65 exercises with dynamic time-based planning across 4 levels, an intelligent muscle group conflict scoring system that dynamically replaces exercises utilizing the same equipment, and a robust session logging pipeline.',
     image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React', 'Vite', 'Node.js', 'Express', 'PostgreSQL', 'Claude AI', 'Stitch UI'],
+    tags: ['React (Vite)', 'Node.js', 'PostgreSQL', 'Supabase', 'REST API', 'JavaScript'],
     features: [
-      'Relational database schema & REST APIs for exercise logs and user progress history',
-      'Personalized workout plan generator and interactive logging UI',
-      'Accelerated prototyping & debugging utilizing Claude AI workflows',
-      'UI/UX workflow design created with Stitch',
+      'Built the full-stack fitness web application using React (Vite) and Node.js REST API with PostgreSQL database (Supabase)',
+      'Developed a custom workout engine covering over 65 exercises and including dynamic time-based planning at 4 levels',
+      'Created the muscle group conflict scoring system which allows to dynamically replace exercises that utilize the same equipment',
+      'Implemented the session logging system with Supabase which stores all necessary information of the generated workout plans in a structured manner',
     ],
     liveUrl: 'https://github.com/akashpandey25/gymbuddy',
     githubUrl: 'https://github.com/akashpandey25/gymbuddy',
@@ -28,16 +28,17 @@ const projectsData = [
     id: 2,
     title: 'Cyber Threat Intelligence (CTI) Platform',
     category: 'Frontend & Data Vis',
-    description: 'React-based cyber threat intelligence platform built on OpenCTI to search, investigate, visualize, and enrich STIX 2.1 data for analysts.',
-    longDescription: 'Built and maintained a React-based CTI platform on top of OpenCTI, enabling analysts to search, investigate, visualize, and enrich STIX 2.1 threat intelligence data. The platform includes interactive graph exploration, intelligence search workflows for IPs, domains, URLs, and hashes, and integrated external enrichment feeds such as VirusTotal, Shodan, ZoomEye, MITRE ATT&CK, AlienVault, and URLhaus.',
+    description: 'React-based cyber threat intelligence platform built upon OpenCTI to search, investigate, visualize, and enrich STIX 2.1 data for security analysts.',
+    longDescription: 'Developed and maintained a React-based CTI platform built upon OpenCTI, providing security analysts with comprehensive search, investigation, visualization, and enrichment capabilities for STIX 2.1 threat intelligence data. The platform features an interactive D3.js force-directed graph explorer, complex backend traversal with FastAPI, and automated threat feeds.',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80',
     tags: ['React', 'D3.js', 'FastAPI', 'OpenCTI', 'STIX 2.1', 'Material UI', 'React Query'],
     features: [
-      'Developed an interactive STIX graph explorer with multi-hop relationship visualization, node expansion, and force-directed graph interactions',
-      'Implemented IP, domain, URL, and hash search workflows with backend resolution and custom graph traversal using FastAPI',
-      'Added multi-hop BFS traversal, deduplication, and graph-size limiting to efficiently surface related STIX entities',
-      'Built reusable dashboards, filters, charts, and server-side pagination for large IOC and report datasets using React Query',
-      'Integrated intelligence enrichment feeds including VirusTotal, Shodan, ZoomEye, MITRE ATT&CK, AlienVault, and URLhaus',
+      'Developed and maintained a React-based Cyber Threat Intelligence (CTI) platform built upon OpenCTI for STIX 2.1 threat intelligence',
+      'Created an interactive STIX graph explorer using React and D3.js supporting multi-hop relationship exploration, node expansion, and force-directed graphs',
+      'Implemented IP, domain, URL, and hash search workflows, with STIX object resolution, data transformation, aggregation, and custom graph traversal handled by FastAPI',
+      'Implemented multi-hop BFS traversal, deduplication, and graph-size limiting in the backend to efficiently traverse and return related STIX entities',
+      'Built reusable React + Material UI components, dashboards, filters, charts, and server-side pagination/filtering using React Query',
+      'Integrated threat-intelligence enrichment and feeds including VirusTotal, Shodan, ZoomEye, MITRE ATT&CK, AlienVault, and URLhaus',
     ],
     liveUrl: 'https://github.com/Dhanushaksha/cti-mainApp',
     githubUrl: 'https://github.com/Dhanushaksha/cti-mainApp',

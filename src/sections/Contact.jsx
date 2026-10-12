@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Sparkles, MessageSquare, PhoneCall, Code2 } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Sparkles, MessageSquare, PhoneCall } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 import { SiLeetcode, SiCodechef, SiGeeksforgeeks } from 'react-icons/si';
 

@@ -3,30 +3,34 @@ import { Cpu, Code, Database, Box, Bot } from 'lucide-react';
 
 const skillCategories = [
   {
-    title: 'Languages & Core CS',
+    title: 'Frontend & UI Engineering',
+    label: 'Frontend',
+    icon: Box,
+    color: 'from-indigo-500 to-violet-600',
+    accent: 'text-indigo-300 border-indigo-500/30 bg-indigo-500/10',
+    skills: [
+      'React & React Hooks',
+      'Redux',
+      'Material UI',
+      'D3.js Visualization',
+      'HTML5 & CSS3',
+      'Component Design',
+      'Responsive Design',
+    ],
+  },
+  {
+    title: 'Languages & Core CS Concepts',
     label: 'Foundation',
     icon: Code,
     color: 'from-cyan-500 to-blue-600',
     accent: 'text-cyan-300 border-cyan-500/30 bg-cyan-500/10',
     skills: [
       'JavaScript (ES6+)',
-      'Java',
+      'Core Java',
       'SQL',
       'Data Structures & Algorithms',
-      'OOP & DBMS Concepts',
-    ],
-  },
-  {
-    title: 'Data Visualization & UI Frameworks',
-    label: 'Frontend',
-    icon: Box,
-    color: 'from-indigo-500 to-violet-600',
-    accent: 'text-indigo-300 border-indigo-500/30 bg-indigo-500/10',
-    skills: [
-      'React.js',
-      'HTML5 & CSS3 Architecture',
-      'Material UI & Tailwind CSS v4',
-      'SVG Graphics & Motion Animation',
+      'OOP Concepts',
+      'DBMS',
     ],
   },
   {
@@ -36,23 +40,28 @@ const skillCategories = [
     color: 'from-emerald-500 to-teal-600',
     accent: 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10',
     skills: [
-      'Node.js & Express APIs',
+      'Node.js',
+      'FastAPI (Python)',
+      'REST APIs',
       'GraphQL',
-      'REST API System Design',
-      'PostgreSQL & Schema Design',
+      'PostgreSQL',
+      'MySQL',
+      'Supabase',
     ],
   },
   {
-    title: 'Tools & AI-Assisted Workflows',
+    title: 'Tools, Practices & AI Workflows',
     label: 'Workflow',
     icon: Bot,
     color: 'from-amber-500 to-orange-600',
     accent: 'text-amber-300 border-amber-500/30 bg-amber-500/10',
     skills: [
-      'Git & GitHub Feature-Branch Workflow',
-      'Claude (AI-Assisted Dev & Debugging)',
-      'Antigravity IDE & Stitch (UI/UX Workflows)',
-      'VS Code & IntelliJ Debugging',
+      'Git & GitHub (Feature-Branch)',
+      'VS Code & IntelliJ',
+      'Debugging',
+      'Agile Sprints',
+      'Claude (AI-Assisted Dev)',
+      'OpenCTI & STIX 2.1',
     ],
   },
 ];
@@ -87,7 +96,7 @@ const Skills = () => {
             transition={{ delay: 0.2 }}
             className="text-slate-400 text-base sm:text-lg"
           >
-            Structured around Akash's proficiency across modern frontend engineering, API design, data systems, and AI-enabled workflows.
+            Structured around Akash's proficiency across modern React frontend engineering, API architecture, databases, core CS fundamentals, and AI-assisted development.
           </motion.p>
         </div>
 
