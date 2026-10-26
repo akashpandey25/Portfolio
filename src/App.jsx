@@ -1,38 +1,76 @@
+import { useEffect } from 'react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
+
 import CustomCursor from './components/CustomCursor';
 import NavBar from './components/NavBar';
-import ParticleBG from './components/ParticleBG';
+import CinematicBackground from './components/CinematicBackground';
 
 import Home from './sections/Home';
-import AboutUs from './sections/AboutUs';
 import Projects from './sections/Projects';
+import AboutUs from './sections/AboutUs';
 import Experience from './sections/Experience';
 import Skills from './sections/Skills';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
 function App() {
-  return (
-    <div className="relative min-h-screen bg-[#04060a] text-slate-100 font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden antialiased">
-      {/* 3D WebGL Particle Starfield Background Canvas */}
-      <ParticleBG />
+  useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
 
-      {/* Custom Magnetic Glowing Mouse Cursor */}
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    // Initialize smooth inertial agency scrolling
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.5,
+    });
+
+    let animationFrameId;
+    function raf(time) {
+      lenis.raf(time);
+      animationFrameId = requestAnimationFrame(raf);
+    }
+    animationFrameId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      lenis.destroy();
+    };
+  }, []);
+
+  return (
+    <div className="relative min-h-screen bg-[#07070A] text-[#F5F5F7] selection:bg-[#A78BFA]/30 selection:text-white overflow-x-hidden antialiased">
+      {/* Cinematic Ambient Atmosphere Background */}
+      <CinematicBackground />
+
+      {/* Refined Desktop Precision Cursor */}
       <CustomCursor />
 
-      {/* Glassmorphic Floating Header Navigation Bar */}
+      {/* Fixed Agency Header Navigation */}
       <NavBar />
 
-      {/* Main Single-Page 3D Experience Layout */}
+      {/* Main Narrative Flow */}
       <main className="relative z-10">
         <Home />
-        <AboutUs />
         <Projects />
+        <AboutUs />
         <Experience />
         <Skills />
         <Contact />
       </main>
 
-      {/* Footer */}
+      {/* Minimalist Footer */}
       <Footer />
     </div>
   );

@@ -1,248 +1,241 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FolderGit2, ExternalLink, Eye } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Check, ShieldCheck } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa6';
 import ProjectModal from '../components/ProjectModal';
 
-const projectCategories = ['All', 'Full-Stack', 'Frontend & Data Vis', 'UI Systems'];
-
-const projectsData = [
+const projects = [
   {
-    id: 1,
+    id: 'cti-platform',
+    index: '01',
+    category: 'COMPANY SYSTEM · CYBER THREAT INTELLIGENCE',
+    title: 'Cyber Threat Intelligence Platform',
+    role: 'Frontend Software Engineer · Genetic Web Technologies Pvt. Ltd.',
+    period: 'September 2024 – Present',
+    description:
+      'Developed and maintained a React-based Cyber Threat Intelligence (CTI) platform built upon OpenCTI, providing analysts with search, investigation, visualization, and enrichment capabilities for STIX 2.1 threat intelligence data.',
+    image: '/cti_platform.jpg',
+    tags: ['React', 'D3.js', 'Fast API', 'OpenCTI', 'STIX 2.1', 'Material UI', 'React Query', 'Git'],
+    highlights: [
+      'Developed and maintained a React-based Cyber Threat Intelligence (CTI) platform built upon OpenCTI, providing analysts with search, investigation, visualization, and enrichment capabilities for STIX 2.1 threat intelligence data.',
+      'Created an interactive STIX graph explorer using React and D3.js, supporting multi-hop relationship exploration, node expansion, and interactive force-directed graphs.',
+      'Implemented IP, domain, URL, and hash search workflows, with STIX object resolution, data transformation, aggregation, and custom graph traversal handled by Fast API.',
+      'Implemented multi-hop BFS traversal, deduplication, and graph-size limiting in the backend to efficiently traverse and return related STIX entities.',
+      'Built reusable React + Material UI components, dashboards, filters, charts, and server-side pagination/filtering for large IOC and report datasets using React Query.',
+      'Collaborated in Agile sprints with rapid iteration cycles, utilizing Git’s feature-branch workflow in a cross-functional team setting.',
+    ],
+    githubUrl: null,
+    liveUrl: null,
+    isCompanyProject: true,
+    accent: '#A78BFA',
+  },
+  {
+    id: 'gym-buddy',
+    index: '02',
+    category: 'FULL-STACK APPLICATION · FITNESS & TRACKING',
     title: 'Gym Buddy — Workout Planning & Tracking App',
-    category: 'Full-Stack',
-    description: 'Full-stack fitness web application built with React (Vite) and Node.js REST API with PostgreSQL database (Supabase), featuring dynamic workout engines and exercise conflict scoring.',
-    longDescription: 'Gym Buddy is a full-stack fitness web application engineered with React (Vite) and a Node.js REST API backed by a PostgreSQL database (Supabase). It incorporates a custom workout engine covering over 65 exercises with dynamic time-based planning across 4 levels, an intelligent muscle group conflict scoring system that dynamically replaces exercises utilizing the same equipment, and a robust session logging pipeline.',
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React (Vite)', 'Node.js', 'PostgreSQL', 'Supabase', 'REST API', 'JavaScript'],
-    features: [
-      'Built the full-stack fitness web application using React (Vite) and Node.js REST API with PostgreSQL database (Supabase)',
-      'Developed a custom workout engine covering over 65 exercises and including dynamic time-based planning at 4 levels',
+    role: 'Full-Stack Developer',
+    period: '2024',
+    description:
+      'Built the full-stack fitness web application using React (Vite) and Node.js REST API with PostgreSQL database (Supabase) to help users build personalized exercise routines, log workouts, and maintain their fitness journey.',
+    image: '/gym_buddy.jpg',
+    tags: ['React (Vite)', 'Node.js', 'REST API', 'PostgreSQL', 'Supabase', 'JavaScript'],
+    highlights: [
+      'Built the full-stack fitness web application using React (Vite) and Node.js REST API with PostgreSQL database (Supabase).',
+      'developed a custom workout engine covering over 65 exercises and including dynamic time-based planning at 4 levels.',
       'Created the muscle group conflict scoring system which allows to dynamically replace exercises that utilize the same equipment',
-      'Implemented the session logging system with Supabase which stores all necessary information of the generated workout plans in a structured manner',
+      'Implemented the session logging system with Supabase which stores all necessary information of the generated workout plans in a structured manner.',
     ],
-    liveUrl: 'https://github.com/akashpandey25/gymbuddy',
     githubUrl: 'https://github.com/akashpandey25/gymbuddy',
-  },
-  {
-    id: 2,
-    title: 'Cyber Threat Intelligence (CTI) Platform',
-    category: 'Frontend & Data Vis',
-    description: 'React-based cyber threat intelligence platform built upon OpenCTI to search, investigate, visualize, and enrich STIX 2.1 data for security analysts.',
-    longDescription: 'Developed and maintained a React-based CTI platform built upon OpenCTI, providing security analysts with comprehensive search, investigation, visualization, and enrichment capabilities for STIX 2.1 threat intelligence data. The platform features an interactive D3.js force-directed graph explorer, complex backend traversal with FastAPI, and automated threat feeds.',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React', 'D3.js', 'FastAPI', 'OpenCTI', 'STIX 2.1', 'Material UI', 'React Query'],
-    features: [
-      'Developed and maintained a React-based Cyber Threat Intelligence (CTI) platform built upon OpenCTI for STIX 2.1 threat intelligence',
-      'Created an interactive STIX graph explorer using React and D3.js supporting multi-hop relationship exploration, node expansion, and force-directed graphs',
-      'Implemented IP, domain, URL, and hash search workflows, with STIX object resolution, data transformation, aggregation, and custom graph traversal handled by FastAPI',
-      'Implemented multi-hop BFS traversal, deduplication, and graph-size limiting in the backend to efficiently traverse and return related STIX entities',
-      'Built reusable React + Material UI components, dashboards, filters, charts, and server-side pagination/filtering using React Query',
-      'Integrated threat-intelligence enrichment and feeds including VirusTotal, Shodan, ZoomEye, MITRE ATT&CK, AlienVault, and URLhaus',
-    ],
-    liveUrl: 'https://github.com/Dhanushaksha/cti-mainApp',
-    githubUrl: 'https://github.com/Dhanushaksha/cti-mainApp',
-  },
-  {
-    id: 3,
-    title: 'To-Do List Task Management App',
-    category: 'Full-Stack',
-    description: 'Clean, responsive task management application built with React for organizing daily routines, priorities, and workflow productivity.',
-    longDescription: 'A modern, interactive task manager app designed for seamless task categorization, status tracking, filter views, and clean user state management.',
-    image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'UI Design'],
-    features: [
-      'Interactive task creation, inline editing, priority filtering, and completion status',
-      'Clean state management and responsive cross-device layout',
-      'Modular React component design and smooth user transitions',
-    ],
-    liveUrl: 'https://github.com/akashpandey25/To-Do-List-App',
-    githubUrl: 'https://github.com/akashpandey25/To-Do-List-App',
-  },
-  {
-    id: 4,
-    title: 'Modern Developer Portfolio Website',
-    category: 'UI Systems',
-    description: 'High-performance interactive developer portfolio built with React 19, Vite, Framer Motion, and Tailwind CSS v4.',
-    longDescription: 'A sleek, glassmorphic portfolio platform featuring interactive SVG tech architecture diagrams, dark obsidian visual themes, responsive component structures, and smooth scroll interactions.',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React 19', 'Vite', 'Tailwind CSS v4', 'Framer Motion', 'JavaScript'],
-    features: [
-      'Interactive 2D Cyber Tech Node Visualizer with SVG and Framer Motion',
-      'Ambient HTML5 Canvas particle network backdrop',
-      'Responsive glassmorphic UI card system with dark obsidian theme',
-      'Optimized Vite production bundle with zero-lag framerates',
-    ],
-    liveUrl: 'http://localhost:5174/',
-    githubUrl: 'https://github.com/akashpandey25',
+    liveUrl: 'https://github.com/akashpandey25/gymbuddy',
+    isCompanyProject: false,
+    accent: '#60A5FA',
   },
 ];
 
 const Projects = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const filteredProjects = activeCategory === 'All'
-    ? projectsData
-    : projectsData.filter((p) => p.category === activeCategory);
-
   return (
-    <section id="projects" className="relative py-24 z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="work" className="relative py-28 sm:py-36 z-10">
+      {/* Hidden anchor for backwards compatibility */}
+      <div id="projects" className="absolute -top-10" />
+
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-widest"
-          >
-            <FolderGit2 className="w-3.5 h-3.5" />
-            <span>Akash's Projects</span>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-5xl font-extrabold text-white"
-          >
-            Featured <span className="text-gradient-cyan">Projects & Work</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-slate-400 text-base sm:text-lg"
-          >
-            Highlighting full-stack applications, STIX threat intelligence graph visualizations, and modern UI systems.
-          </motion.p>
+        <div className="border-t border-white/[0.12] pt-12 pb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#A78BFA] flex items-center gap-2">
+                <span>01 // SHOWCASE</span>
+              </span>
+              <h2 className="font-display text-[clamp(2.25rem,4.5vw,4.25rem)] font-extrabold text-[#F5F5F7] tracking-tight leading-none">
+                SELECTED WORK
+              </h2>
+            </div>
+            <p className="text-[#A1A1AA] text-sm sm:text-base max-w-md font-normal leading-relaxed">
+              Production systems and applications built according to real-world engineering standards.
+            </p>
+          </div>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
-          {projectCategories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${
-                activeCategory === cat
-                  ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-lg shadow-cyan-500/25'
-                  : 'bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        {/* Editorial Project Layouts */}
+        <div className="space-y-24 sm:space-y-36">
+          {projects.map((project, idx) => {
+            const isEven = idx % 2 === 0;
 
-        {/* Projects Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          <AnimatePresence>
-            {filteredProjects.map((project) => (
-              <motion.div
+            return (
+              <motion.article
                 key={project.id}
-                layout
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                className="group glass-panel-interactive rounded-3xl overflow-hidden flex flex-col justify-between"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative"
               >
-                {/* Project Image Container */}
-                <div className="relative h-60 w-full overflow-hidden bg-slate-900">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-transparent to-transparent opacity-90" />
+                <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center ${
+                  isEven ? '' : 'lg:grid-flow-dense'
+                }`}>
 
-                  {/* Top Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 text-xs font-semibold rounded-full bg-slate-950/80 text-cyan-400 border border-slate-800 backdrop-blur-md">
-                      {project.category}
-                    </span>
-                  </div>
+                  {/* Project Visual Column (7 cols) */}
+                  <div className={`lg:col-span-7 ${isEven ? '' : 'lg:col-start-6'}`}>
+                    <div className="relative rounded-2xl overflow-hidden border border-white/[0.12] bg-[#101016] shadow-[0_20px_60px_rgba(0,0,0,0.6)] group-hover:border-white/25 transition-all duration-500">
+                      
+                      {/* Top browser/metadata hairline bar */}
+                      <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.08] bg-[#07070A]/80 text-[11px] font-mono text-[#A1A1AA]">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-white/20" />
+                          <span className="w-2 h-2 rounded-full bg-white/20" />
+                          <span className="w-2 h-2 rounded-full bg-white/20" />
+                          <span className="ml-2 text-white/60">{project.id}.view</span>
+                        </div>
+                        <span className="uppercase tracking-widest text-[#A78BFA]">{project.category.split('·')[0]}</span>
+                      </div>
 
-                  {/* Hover Overlay Button */}
-                  <div className="absolute inset-0 bg-cyan-950/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="px-4 py-2.5 rounded-xl bg-white text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-xl hover:scale-105 transition-transform"
-                    >
-                      <Eye className="w-4 h-4 text-cyan-600" />
-                      <span>View Details</span>
-                    </button>
-                  </div>
-                </div>
+                      {/* Visual Content Container */}
+                      <div className="relative aspect-[16/10] overflow-hidden bg-[#07070A] flex items-center justify-center">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover object-top filter contrast-[1.05] brightness-95 group-hover:scale-105 group-hover:brightness-105 transition-all duration-700 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#101016]/90 via-transparent to-transparent opacity-60" />
 
-                {/* Content Details */}
-                <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center justify-between">
-                      {project.title}
-                    </h3>
-                    <p className="text-slate-300 text-sm line-clamp-2 leading-relaxed">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 text-[11px] font-mono rounded-md bg-slate-900 text-slate-300 border border-slate-800"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Card Bottom Links */}
-                  <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="text-xs font-semibold text-cyan-400 hover:underline flex items-center gap-1"
-                    >
-                      <span>Explore Case Study</span> &rarr;
-                    </button>
-                    <div className="flex items-center gap-3">
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-slate-400 hover:text-white transition-colors"
-                        aria-label="GitHub Repository"
-                      >
-                        <FaGithub className="w-4 h-4" />
-                      </a>
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-slate-400 hover:text-cyan-400 transition-colors"
-                        aria-label="Live Demo / Repository"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
+                        {/* Hover Overlay Button to open details */}
+                        <div className="absolute inset-0 bg-[#07070A]/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <button
+                            onClick={() => setSelectedProject(project)}
+                            className="px-5 py-2.5 rounded-full bg-white text-[#07070A] font-semibold text-xs uppercase tracking-wider flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform"
+                          >
+                            <span>Inspect Technical Details</span>
+                            <ArrowUpRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
 
-        {/* Modal Viewer */}
+                  {/* Project Information Column (5 cols) */}
+                  <div className={`lg:col-span-5 space-y-6 ${
+                    isEven ? '' : 'lg:col-start-1 lg:row-start-1'
+                  }`}>
+                    
+                    {/* Index & Category */}
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-2xl sm:text-3xl font-extrabold text-[#A78BFA]">
+                        {project.index}
+                      </span>
+                      <span className="text-white/20">/</span>
+                      <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA]">
+                        {project.category}
+                      </span>
+                    </div>
+
+                    {/* Title & Role */}
+                    <div className="space-y-1">
+                      <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#F5F5F7] tracking-tight group-hover:text-white transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs font-mono text-[#A78BFA]">
+                        {project.role}
+                      </p>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-[#A1A1AA] text-sm sm:text-base leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    {/* Key Technical Highlights */}
+                    <ul className="space-y-2 pt-1 border-t border-white/[0.08]">
+                      {project.highlights.slice(0, 3).map((item, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-xs text-[#F5F5F7]/85">
+                          <Check className="w-3.5 h-3.5 text-[#A78BFA] shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Technology Badges */}
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-md text-[11px] font-mono border border-white/10 bg-white/[0.03] text-[#A1A1AA]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Links */}
+                    <div className="flex items-center gap-4 pt-3">
+                      {project.githubUrl ? (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white hover:text-[#A78BFA] transition-colors"
+                        >
+                          <FaGithub className="w-4 h-4" />
+                          <span>Source Code</span>
+                          <ArrowUpRight className="w-3 h-3 text-[#A78BFA]" />
+                        </a>
+                      ) : (
+                        <div className="inline-flex items-center gap-2 text-[11px] font-mono text-[#A1A1AA] bg-white/[0.04] px-3 py-1.5 rounded-full border border-white/10">
+                          <ShieldCheck className="w-3.5 h-3.5 text-[#A78BFA]" />
+                          <span>Company Project (Proprietary)</span>
+                        </div>
+                      )}
+
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors ml-auto focus:outline-none"
+                      >
+                        <span>Deep Dive</span>
+                        <span>→</span>
+                      </button>
+                    </div>
+
+                  </div>
+
+                </div>
+              </motion.article>
+            );
+          })}
+        </div>
+
+      </div>
+
+      {/* Interactive Project Technical Details Modal */}
+      {selectedProject && (
         <ProjectModal
           project={selectedProject}
           onClose={() => setSelectedProject(null)}
         />
-      </div>
+      )}
     </section>
   );
 };

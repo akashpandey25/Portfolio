@@ -1,173 +1,145 @@
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, MapPin, Sparkles, Building2, GraduationCap } from 'lucide-react';
+import { Briefcase, Building2, Calendar, MapPin, Check, Download, GraduationCap } from 'lucide-react';
 
 const experiences = [
   {
-    role: 'Software Engineer (Frontend)',
+    type: 'work',
+    role: 'Frontend Software Engineer',
     company: 'Genetic Web Technologies Pvt. Ltd.',
     location: 'Remote',
     period: 'September 2024 – Present',
-    description: 'Developed and maintained a React-based Cyber Threat Intelligence (CTI) platform built upon OpenCTI, providing analysts with search, investigation, visualization, and enrichment capabilities for STIX 2.1 threat intelligence data.',
+    description:
+      'Developed and maintained a React-based Cyber Threat Intelligence (CTI) platform built upon OpenCTI, providing analysts with search, investigation, visualization, and enrichment capabilities for STIX 2.1 threat intelligence data.',
     achievements: [
       'Developed and maintained a React-based Cyber Threat Intelligence (CTI) platform built upon OpenCTI, providing analysts with search, investigation, visualization, and enrichment capabilities for STIX 2.1 threat intelligence data.',
       'Created an interactive STIX graph explorer using React and D3.js, supporting multi-hop relationship exploration, node expansion, and interactive force-directed graphs.',
-      'Implemented IP, domain, URL, and hash search workflows, with STIX object resolution, data transformation, aggregation, and custom graph traversal handled by FastAPI.',
+      'Implemented IP, domain, URL, and hash search workflows, with STIX object resolution, data transformation, aggregation, and custom graph traversal handled by Fast API.',
       'Implemented multi-hop BFS traversal, deduplication, and graph-size limiting in the backend to efficiently traverse and return related STIX entities.',
       'Built reusable React + Material UI components, dashboards, filters, charts, and server-side pagination/filtering for large IOC and report datasets using React Query.',
-      'Integrated threat-intelligence enrichment and feeds including VirusTotal, Shodan, ZoomEye, MITRE ATT&CK, AlienVault, and URLhaus.',
       'Collaborated in Agile sprints with rapid iteration cycles, utilizing Git’s feature-branch workflow in a cross-functional team setting.',
     ],
-    tech: ['React', 'D3.js', 'FastAPI', 'STIX 2.1', 'OpenCTI', 'Material UI', 'React Query', 'Git'],
+    tech: ['React', 'D3.js', 'Fast API', 'STIX 2.1', 'OpenCTI', 'Material UI', 'React Query', 'Git'],
   },
   {
+    type: 'education',
     role: 'B. Tech in Computer Science & Engineering',
     company: 'Siliguri Institute of Technology',
     location: 'West Bengal, India',
     period: '2020 – 2024',
-    description: 'Graduated with CGPA 8.73 / 10. Focused on Data Structures, Algorithms, Software Engineering, DBMS, and Object-Oriented Programming.',
+    description:
+      'Siliguri Institute of Technology, West Bengal | CGPA: 8.73 / 10',
     achievements: [
-      'Graduated with CGPA: 8.73 / 10 with strong focus on computer science fundamentals',
-      'Solved over 300 Data Structures & Algorithms problems across LeetCode and GFG',
-      'Engineered full-stack fitness web application Gym Buddy using React and Node.js REST API',
+      'Graduated with CGPA: 8.73 / 10 in Computer Science & Engineering.',
+      'Solved over 300 Data Structures & Algorithms problems across LeetCode and GFG.',
+      'Built full-stack fitness application Gym Buddy using React (Vite) and Node.js REST API with PostgreSQL database (Supabase).',
     ],
     tech: ['Core Java', 'JavaScript (ES6+)', 'SQL', 'Data Structures & Algorithms', 'DBMS', 'OOP'],
-  },
-  {
-    role: 'Higher Secondary Education (Class XII - PCM)',
-    company: 'KR Saraswati Vidya Mandir',
-    location: 'Jhumari Telaiya, Jharkhand',
-    period: '2017 – 2019',
-    description: 'Completed Class 12th Board Examination with 64.8% aggregate, specializing in Physics, Chemistry, and Mathematics.',
-    achievements: [
-      'Scored 64.8% in Senior Secondary Board Examination',
-      'Specialized in Physics, Chemistry, and Mathematics (PCM)',
-    ],
-    tech: ['Physics', 'Chemistry', 'Mathematics'],
-  },
-  {
-    role: 'Secondary Education (Class X)',
-    company: 'KR Saraswati Vidya Mandir',
-    location: 'Jhumari Telaiya, Jharkhand',
-    period: '2016 – 2017',
-    description: 'Completed Class 10th Board Examination with 8.4 CGPA.',
-    achievements: [
-      'Achieved 8.4 CGPA in Secondary School Board Examination',
-      'Built strong core foundations in Mathematics and General Science',
-    ],
-    tech: ['Science', 'Mathematics', 'English', 'Social Science'],
   },
 ];
 
 const Experience = () => {
   return (
-    <section id="experience" className="relative py-24 z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="relative py-28 sm:py-36 z-10">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-widest"
-          >
-            <Briefcase className="w-3.5 h-3.5" />
-            <span>Professional Journey</span>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-5xl font-extrabold text-white"
-          >
-            Experience & <span className="text-gradient-cyan">Education</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-slate-400 text-base sm:text-lg"
-          >
-            Akash's professional timeline, achievements, and academic background.
-          </motion.p>
+        <div className="border-t border-white/[0.12] pt-12 pb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#A78BFA] flex items-center gap-2">
+                <span>03 // TRAJECTORY</span>
+              </span>
+              <h2 className="font-display text-[clamp(2.25rem,4.5vw,4.25rem)] font-extrabold text-[#F5F5F7] tracking-tight leading-none">
+                EXPERIENCE & JOURNEY
+              </h2>
+            </div>
+            
+            <a
+              href="/Akash_Pandey_Resume.pdf"
+              download="Akash_Pandey_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white border border-white/15 px-5 py-2.5 rounded-full hover:bg-white/[0.06] hover:border-[#A78BFA]/50 transition-all self-start md:self-auto"
+            >
+              <Download className="w-3.5 h-3.5 text-[#A78BFA]" />
+              <span>Full Curriculum Vitae (PDF)</span>
+            </a>
+          </div>
         </div>
 
-        {/* Timeline Container */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Glowing Vertical Line */}
-          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-indigo-500 to-cyan-500 opacity-30 shadow-[0_0_15px_#38bdf8] -translate-x-1/2 hidden sm:block" />
-
-          <div className="space-y-12">
-            {experiences.map((exp, idx) => (
-              <motion.div
-                key={exp.role}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.15 }}
-                className={`relative flex flex-col sm:flex-row items-center gap-8 ${
-                  idx % 2 === 0 ? 'sm:flex-row-reverse' : ''
-                }`}
-              >
-                {/* Timeline Center Pulse Node */}
-                <div className="absolute left-4 sm:left-1/2 top-6 -translate-x-1/2 w-8 h-8 rounded-full bg-[#090d16] border-2 border-cyan-400 shadow-[0_0_15px_#38bdf8] flex items-center justify-center z-20 hidden sm:flex">
-                  <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-                </div>
-
-                {/* Content Glass Card */}
-                <div className="w-full sm:w-[calc(50%-2.5rem)] glass-panel-interactive p-6 sm:p-8 rounded-3xl space-y-4">
-                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
-                    <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>{exp.period}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-slate-400 text-xs">
-                      <MapPin className="w-3.5 h-3.5 text-indigo-400" />
-                      <span>{exp.location}</span>
-                    </div>
+        {/* Minimalist Editorial Timeline List */}
+        <div className="space-y-12">
+          {experiences.map((item, idx) => (
+            <motion.div
+              key={item.role + item.company}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="p-6 sm:p-10 rounded-2xl border border-white/[0.1] bg-[#101016]/80 hover:border-white/20 transition-all duration-300"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
+                
+                {/* Meta Column (4 cols) */}
+                <div className="lg:col-span-4 space-y-3">
+                  <div className="flex items-center gap-2 text-xs font-mono text-[#A78BFA]">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>{item.period}</span>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                      {exp.role}
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
+                      {item.role}
                     </h3>
-                    <h4 className="text-sm font-semibold text-cyan-400 flex items-center gap-1.5 mt-1">
-                      {idx >= 1 ? <GraduationCap className="w-4 h-4" /> : <Building2 className="w-4 h-4" />} {exp.company}
-                    </h4>
+                    <p className="text-sm text-[#F5F5F7]/80 font-medium mt-1 flex items-center gap-1.5">
+                      {item.type === 'work' ? (
+                        <Building2 className="w-3.5 h-3.5 text-[#A78BFA]" />
+                      ) : (
+                        <GraduationCap className="w-3.5 h-3.5 text-[#60A5FA]" />
+                      )}
+                      <span>{item.company}</span>
+                    </p>
                   </div>
 
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    {exp.description}
-                  </p>
-
-                  {/* Key Achievements */}
-                  <div className="space-y-1.5 pt-1">
-                    {exp.achievements.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-slate-300">
-                        <Sparkles className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-[#A1A1AA]">
+                    <MapPin className="w-3.5 h-3.5" />
+                    <span>{item.location}</span>
                   </div>
 
-                  {/* Tech stack */}
-                  <div className="flex flex-wrap gap-1.5 pt-3">
-                    {exp.tech.map((t) => (
+                  {/* Technology labels */}
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {item.tech.map((t) => (
                       <span
                         key={t}
-                        className="px-2.5 py-1 text-[11px] font-mono rounded-md bg-slate-900 text-slate-300 border border-slate-800"
+                        className="px-2 py-0.5 rounded text-[10px] font-mono border border-white/[0.08] bg-white/[0.02] text-[#A1A1AA]"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                {/* Details Column (8 cols) */}
+                <div className="lg:col-span-8 space-y-4 lg:border-l lg:border-white/[0.08] lg:pl-10">
+                  <p className="text-sm text-[#A1A1AA] leading-relaxed">
+                    {item.description}
+                  </p>
+
+                  <div className="space-y-2.5 pt-2">
+                    {item.achievements.map((bullet, bIdx) => (
+                      <div key={bIdx} className="flex items-start gap-2.5 text-xs text-[#F5F5F7]/90 leading-relaxed">
+                        <Check className="w-3.5 h-3.5 text-[#A78BFA] shrink-0 mt-0.5" />
+                        <span>{bullet}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          ))}
         </div>
+
       </div>
     </section>
   );

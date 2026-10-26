@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Sparkles, CheckCircle2, Layers, Cpu } from 'lucide-react';
+import { X, ArrowUpRight, Check, Cpu, Layers, ShieldCheck } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa6';
 
 const ProjectModal = ({ project, onClose }) => {
@@ -14,81 +14,95 @@ const ProjectModal = ({ project, onClose }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-[#04060a]/80 backdrop-blur-xl"
+          className="fixed inset-0 bg-[#07070A]/85 backdrop-blur-xl"
         />
 
         {/* Modal Container */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-          className="relative w-full max-w-4xl bg-[#090d16]/95 border border-slate-700/60 rounded-3xl shadow-2xl shadow-cyan-500/10 overflow-hidden z-10 my-auto glass-panel"
+          exit={{ opacity: 0, scale: 0.95, y: 15 }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full max-w-3xl bg-[#101016] border border-white/[0.12] rounded-2xl shadow-[0_30px_90px_rgba(0,0,0,0.85)] overflow-hidden z-10 my-auto"
         >
-          {/* Header Bar */}
-          <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-900">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-[#090d16]/40 to-transparent" />
-
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 p-2.5 rounded-full bg-slate-950/70 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-900 transition-colors z-20"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5 text-cyan-400" />
-            </button>
-
-            {/* Category Tag */}
-            <div className="absolute bottom-6 left-6 sm:left-8 flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+          {/* Top Header Bar */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-[#07070A]/60">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-xs text-[#A78BFA] font-semibold">{project.index}</span>
+              <span className="text-white/20">/</span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#A1A1AA]">
                 {project.category}
               </span>
             </div>
+            <button
+              onClick={onClose}
+              className="p-1.5 rounded-full border border-white/10 text-[#A1A1AA] hover:text-white hover:border-white/20 transition-colors focus:outline-none"
+              aria-label="Close details"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
 
-          {/* Body Content */}
-          <div className="p-6 sm:p-8 space-y-6">
+          {/* Image / Header Preview */}
+          {project.image && (
+            <div className="relative aspect-[16/8] w-full overflow-hidden border-b border-white/[0.08] bg-[#07070A]">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#101016] via-transparent to-transparent opacity-80" />
+            </div>
+          )}
+
+          {/* Modal Content */}
+          <div className="p-6 sm:p-8 space-y-6 max-h-[65vh] overflow-y-auto">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2">
-                {project.title} <Sparkles className="w-5 h-5 text-cyan-400" />
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#F5F5F7] tracking-tight">
+                {project.title}
               </h3>
-              <p className="text-slate-300 text-sm sm:text-base mt-2 leading-relaxed">
+              {project.role && (
+                <p className="text-xs font-mono text-[#A78BFA] mt-1">
+                  {project.role} {project.period ? `(${project.period})` : ''}
+                </p>
+              )}
+              <p className="text-[#A1A1AA] text-sm sm:text-base mt-3 leading-relaxed">
                 {project.longDescription || project.description}
               </p>
             </div>
 
-            {/* Key Features List */}
-            {project.features && (
-              <div>
-                <h4 className="text-sm uppercase tracking-wider font-semibold text-cyan-400 flex items-center gap-1.5 mb-3">
-                  <Layers className="w-4 h-4" /> Key Architecture Features
+            {/* Architecture Highlights */}
+            {(project.highlights || project.features) && (
+              <div className="space-y-3 pt-2">
+                <h4 className="text-xs font-mono uppercase tracking-widest text-[#F5F5F7] flex items-center gap-2">
+                  <Layers className="w-3.5 h-3.5 text-[#A78BFA]" />
+                  <span>Architecture & Technical Highlights</span>
                 </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {project.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                      <span className="text-xs sm:text-sm text-slate-300">{feature}</span>
+                <div className="space-y-2">
+                  {(project.highlights || project.features).map((feature, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-start gap-3 p-3 rounded-xl border border-white/[0.07] bg-white/[0.02]"
+                    >
+                      <Check className="w-3.5 h-3.5 text-[#A78BFA] shrink-0 mt-0.5" />
+                      <span className="text-xs sm:text-sm text-[#F5F5F7]/90 leading-relaxed">{feature}</span>
                     </div>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* Tech Stack Badges */}
-            <div>
-              <h4 className="text-sm uppercase tracking-wider font-semibold text-indigo-400 flex items-center gap-1.5 mb-3">
-                <Cpu className="w-4 h-4" /> Technologies Used
+            {/* Tech Stack */}
+            <div className="space-y-2.5 pt-2">
+              <h4 className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] flex items-center gap-2">
+                <Cpu className="w-3.5 h-3.5 text-[#60A5FA]" />
+                <span>Technologies</span>
               </h4>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/80 text-slate-200 border border-slate-700/50"
+                    className="px-2.5 py-1 text-xs font-mono rounded-md border border-white/10 bg-white/[0.03] text-[#F5F5F7]"
                   >
                     {tag}
                   </span>
@@ -96,30 +110,34 @@ const ProjectModal = ({ project, onClose }) => {
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-4">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-indigo-500 shadow-lg shadow-cyan-500/25 transition-all"
-                >
-                  <span>Live Preview</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              )}
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-all"
-                >
-                  <FaGithub className="w-4 h-4 text-cyan-400" />
-                  <span>View Source Code</span>
-                </a>
-              )}
+            {/* Actions Bar */}
+            <div className="pt-4 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                {project.githubUrl ? (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/15 bg-white/[0.04] text-xs font-mono uppercase tracking-wider text-white hover:bg-white/[0.09] hover:border-[#A78BFA]/50 transition-all"
+                  >
+                    <FaGithub className="w-4 h-4 text-[#A78BFA]" />
+                    <span>View Repository</span>
+                    <ArrowUpRight className="w-3 h-3 text-[#A78BFA]" />
+                  </a>
+                ) : (
+                  <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-[#A1A1AA]">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#A78BFA]" />
+                    <span>Company Project · Proprietary System</span>
+                  </div>
+                )}
+              </div>
+
+              <button
+                onClick={onClose}
+                className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
+              >
+                Close Modal [ESC]
+              </button>
             </div>
           </div>
         </motion.div>
